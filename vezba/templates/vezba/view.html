@@ -1,0 +1,72 @@
+{% extends 'vezba/index.html' %}
+{% load static %}
+
+{% block body %}
+
+    <div class="card-body">
+      
+     
+        {% if students %}
+        
+  <table>
+    
+    <tr>
+     
+        <th>Student number</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Field of study</th>
+        <th>Action</th>
+       
+    </tr>
+    {% for student in students %}
+    <tr>
+        
+        <td>{{student.student_number}}</td>
+        <td>{{student.first_name}}</td>
+        <td>{{student.last_name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.field_of_study}}</td>
+        <td>
+         
+
+        <div class="buton">
+           
+          <a href="{% url 'update' student.student_number %}"><button type="button">Update</button></a>
+               <button id="myBtn" type="button" onclick="openForm()">Delete</button>
+            </div>
+        </td> 
+        <div id="myModal" class="modal">
+    
+          <div class="modal-box" > 
+            <i class="fa-solid fa-exclamation"></i>
+            <h2>Are you sure?</h2>
+            <h3>Are you sure you want to delete? All of the following related items will be deleted</h3>
+            <div class="buttons">
+              <a href="{% url 'delete' student.student_number %}"><button type="button">Yes, delete</button></a>
+              <button id="bt" type="button" onclick="closeForm()"> No, take me back</button>
+            </div>
+          </div>
+        
+    </tr>
+    
+    
+    {% endfor %} 
+  </div>
+  </table>
+    
+
+  
+  
+  <br><br><br>
+  <div class="buton">
+    <a href="{% url 'add' %}"><button type="button"> Add</button></a>
+       
+    </div>
+     
+  {% endif %}
+      
+</div>
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends 'vezba/index.html' %}
+
+{% load static %}
+{% block body %}
+<div class="container2">
+
+    <h2>Add student</h2>
+    
+    <form action="{% url 'add_rec' %}" method="post">
+    {% csrf_token %}
+    <input type="number" name="student_number" placeholder="STUDENT NUMBER" min="1"  required><br>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %} 
+
+    <input type="text" name="first_name" placeholder="FIRST NAME" required><br>
+   
+    <input type="text" name="last_name" placeholder="LAST NAME" required><br>
+   
+    <input type="email" name="email" placeholder="EMAIL" required><br>
+   
+    <input type="text"name="field_of_study" placeholder="FIELD OF STUDY" required><br>
+    <button type="submit">Add</button>
+</form>
+
+</div>
+
+{% endblock body %}
+
